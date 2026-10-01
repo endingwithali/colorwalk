@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+
+:root {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #050505;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.color-walk {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  padding: clamp(4.5rem, 10vh, 7rem) 1.5rem;
+  place-items: center;
+  transition: background-color 200ms ease;
+}
+
+.color-walk__header {
+  position: absolute;
+  top: clamp(4.5rem, 11vh, 7.25rem);
+  left: 50%;
+  width: min(100% - 3rem, 42rem);
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.color-walk__header h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.color-walk__header p {
+  margin: 1.25rem 0 0;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.color-walk__hex {
+  margin: 0;
+  font-size: clamp(2.25rem, 3.4vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .color-walk {
+    padding: 4rem 1rem;
+  }
+
+  .color-walk__header {
+    top: 4.5rem;
+    width: min(100% - 2rem, 28rem);
+  }
+
+  .color-walk__header h1 {
+    font-size: clamp(2rem, 12vw, 2.7rem);
+  }
+
+  .color-walk__header p {
+    margin-top: 1rem;
+    font-size: clamp(1.2rem, 7vw, 1.65rem);
+  }
+
+  .color-walk__hex {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+}
