@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 
 const HEX_DIGITS = "0123456789ABCDEF";
+const DAILY_COLOR_STORAGE_KEY = "colorwalk.dailyColor";
 
 function createRandomHexColor() {
   let color = "#";
@@ -10,6 +11,14 @@ function createRandomHexColor() {
   }
 
   return color;
+}
+
+function formatStorageDate(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
 }
 
 function formatDisplayDate(date) {
@@ -22,9 +31,36 @@ function formatDisplayDate(date) {
     .toLowerCase();
 }
 
+function getDailyColor(date) {
+  const generatedDate = formatStorageDate(date);
+  const fallbackColor = createRandomHexColor();
+
+  try {
+    const storedDailyColor = window.localStorage.getItem(DAILY_COLOR_STORAGE_KEY);
+
+    if (storedDailyColor) {
+      const parsedDailyColor = JSON.parse(storedDailyColor);
+
+      if (parsedDailyColor.generatedDate === generatedDate && parsedDailyColor.color) {
+        return parsedDailyColor.color;
+      }
+    }
+
+    window.localStorage.setItem(
+      DAILY_COLOR_STORAGE_KEY,
+      JSON.stringify({ color: fallbackColor, generatedDate }),
+    );
+  } catch {
+    return fallbackColor;
+  }
+
+  return fallbackColor;
+}
+
 export default function App() {
-  const color = useMemo(() => createRandomHexColor(), []);
-  const displayDate = formatDisplayDate(new Date());
+  const today = useMemo(() => new Date(), []);
+  const color = useMemo(() => getDailyColor(today), [today]);
+  const displayDate = formatDisplayDate(today);
 
   return (
     <main className="color-walk" style={{ backgroundColor: color }}>
