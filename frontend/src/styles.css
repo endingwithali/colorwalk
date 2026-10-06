@@ -69,6 +69,25 @@ body {
   text-align: center;
 }
 
+.color-walk__sync-warning {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  margin: 0 auto;
+  max-width: 42rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgb(5 5 5 / 24%);
+  background: rgb(255 255 255 / 78%);
+  color: #050505;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
+}
+
 @media (max-width: 640px) {
   .color-walk {
     padding: 4rem 1rem;
@@ -90,5 +109,12 @@ body {
 
   .color-walk__hex {
     font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .color-walk__sync-warning {
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    font-size: 0.9rem;
   }
 }
